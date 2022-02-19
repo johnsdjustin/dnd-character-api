@@ -1,3 +1,7 @@
+/*
+types.go houses the types used throughout the DnD Character API
+*/
+
 package main
 
 type CharacterSheet struct {
