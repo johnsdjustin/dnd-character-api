@@ -2,7 +2,9 @@
 A simple RESTful API written in go that will return roll20 compliant DnD character sheets. 
 
 My goals with this project are: 
+
     1. To create a functioning RESTful API that returns DnD character sheets
+    
     2. To learn Go
 
 ### Usage
