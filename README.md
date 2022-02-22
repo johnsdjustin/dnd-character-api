@@ -36,7 +36,7 @@ POST Body:
 
 * Accept Roll20 compliant character sheets
 * Validate character sheets
-* Save data to Cockroach DB Table
+* Save data to a DB table
 * Write unit tests and automate them
 * Integrate a linter
 * Dockerize API to make deployment simpler
