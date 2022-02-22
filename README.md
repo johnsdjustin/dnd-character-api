@@ -3,7 +3,6 @@ A simple RESTful API written in go that will return roll20 compliant DnD charact
 
 My goals with this project are: 
     1. To create a functioning RESTful API that returns DnD character sheets
-
     2. To learn Go
 
 ### Usage
@@ -33,22 +32,10 @@ POST Body:
 
 ### Project Goals
 
-Character Sheets Roll20 compliant
-
-Character sheet validation
-
-ID uniqueness checks on POST
-
-Data saved to database
-
-Automated Tests
-
-Linter Integrated
-
-Project Dockerized
-
-Project Hosted on AWS
-
-
-
-cockroach sql --url "postgresql://justin:Mhu1glYlSHigorqCc3iiVA@free-tier14.aws-us-east-1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full&options=--cluster%3Dfunky-beaver-424&sslrootcert=$HOME/.postgresql/root.crt"
+* Accept Roll20 compliant character sheets
+* Validate character sheets
+* Save data to Cockroach DB Table
+* Write unit tests and automate them
+* Integrate a linter
+* Dockerize API to make deployment simpler
+* Host project
