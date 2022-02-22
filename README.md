@@ -48,3 +48,7 @@ Linter Integrated
 Project Dockerized
 
 Project Hosted on AWS
+
+
+
+cockroach sql --url "postgresql://justin:Mhu1glYlSHigorqCc3iiVA@free-tier14.aws-us-east-1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full&options=--cluster%3Dfunky-beaver-424&sslrootcert=$HOME/.postgresql/root.crt"

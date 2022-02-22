@@ -1,8 +1,8 @@
 /*
-types.go houses the types used throughout the DnD Character API
+The models package houses json types and other types reprenting data used 
+throughout the DnD Character API.
 */
-
-package model
+package models
 
 type CharacterSheet struct {
 	ID string `json:"id"`

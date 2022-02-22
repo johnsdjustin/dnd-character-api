@@ -1,35 +1,53 @@
+/*
+The main entry point to the DnD Character API.
+*/
 package main
 
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/dnd-character-api/models"
 	"github.com/gin-gonic/gin"
-	"model/character"
 )
 
-
-func getCharacters(c *gin.Context){
-
-	var characters []character.CharacterSheet
-
-	resp, err := http.Get("https://my-json-server.typicode.com/johnsdjustin/character-sheets-db/characters")
+// Sends an HTTP GET request to fetch a resource from the given url.
+// Param(s): A string representing the url to send the request to.
+// Return(s): A []byte representing the reponse body in JSON, the HTTP 
+// status code and an error.
+func fetch(url string) ([]byte, int, error){
+	resp, err := http.Get(url)
 	if err != nil {
-		log.Fatalln(err)
+		return nil, 500, err
 	}
 	defer resp.Body.Close()
 
+	fmt.Println(resp.StatusCode)
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
+		return nil, 500, err
+	}
+
+	return body, resp.StatusCode, nil
+}
+
+func getCharacters(c *gin.Context){
+	var characters []models.CharacterSheet
+	url := "https://my-json-server.typicode.com/johnsdjustin/character-sheets-db/characters"
+
+	body, code, err := fetch(url)
+	if err != nil || code >= 500{
 		log.Fatalln(err)
 	}
 
 	jErr := json.Unmarshal(body, &characters)
 	if jErr != nil {
-		log.Fatalln(jErr)
+		log.Fatalln(err)
 	}
 
 	c.JSON(http.StatusOK, characters)
@@ -37,37 +55,30 @@ func getCharacters(c *gin.Context){
 
 func getCharactersById(c *gin.Context){
 	id := c.Param("id")
-	var characters []character.CharacterSheet
+	baseUrl := "https://my-json-server.typicode.com/johnsdjustin/character-sheets-db/characters"
+	finalUrl := fmt.Sprintf("%s/%s", baseUrl, id)
+	var character models.CharacterSheet
 
-	resp, err := http.Get("https://my-json-server.typicode.com/johnsdjustin/character-sheets-db/characters")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer resp.Body.Close()
-
-
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
+	body, code, err := fetch(finalUrl)
+	if err != nil || code >= 500 {
 		log.Fatalln(err)
 	}
 
-	jErr := json.Unmarshal(body, &characters)
+	if code == 404 {
+		c.JSON(code, gin.H{"Message": "Not Found"})
+		return
+	}
+
+	jErr := json.Unmarshal(body, &character)
 	if jErr != nil {
 		log.Fatalln(jErr)
 	}
 
-	for _, character := range characters{
-		if id == character.ID {
-			c.JSON(http.StatusOK, character)
-			return
-		}
-	}
-
-	c.JSON(http.StatusNotFound, gin.H{"message": "character not found"})
+	c.JSON(http.StatusFound, character)
 }
 
 func postCharacters(c *gin.Context){
-	var newCharacter character.CharacterSheet
+	var newCharacter models.CharacterSheet
 	err := c.BindJSON(&newCharacter)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Interal failure - please try again"})

@@ -123,3 +123,10 @@ package main
 // 	os.WriteFile("characters.json", byteArray, 0644)
 
 // }
+
+	// for _, character := range characters{
+	// 	if id == character.ID {
+	// 		c.JSON(http.StatusOK, character)
+	// 		return
+	// 	}
+	// }
