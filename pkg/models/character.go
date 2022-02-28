@@ -11,8 +11,3 @@ type CharacterSheet struct {
 	Health int `json:"health"`
 	ArmorClass int `json:"armorClass"`
 }
-
-type CharacterSheets struct {
-	Characters []CharacterSheet `json:"characters"`
-}
-

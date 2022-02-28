@@ -34,10 +34,11 @@ POST Body:
 
 ### Project Goals
 
-* Accept Roll20 compliant character sheets
-* Validate character sheets
-* Save data to a DB table
+* Update project file structure
+* Return errors from CharacterAPIRepository methods
+* Finish comments
 * Write unit tests and automate them
-* Integrate a linter
+* Accept Roll20 compliant character sheets
+* Integrate database
 * Dockerize API to make deployment simpler
 * Host project

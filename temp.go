@@ -130,3 +130,73 @@ package main
 	// 		return
 	// 	}
 	// }
+
+	// errorRespMap := map[string]string{
+	// 	"Message": errorMessage,
+	// }
+
+	// func postCharacters(c *gin.Context){
+	// 	var newCharacter models.CharacterSheet
+	// 	url := "https://my-json-server.typicode.com/johnsdjustin/character-sheets-db/characters"
+	// 	contentType := "application/JSON"
+	
+	// 	err := c.BindJSON(&newCharacter)
+	// 	if err != nil {
+	// 		c.JSON(500, utils.GenerateError(500))
+	// 		return
+	// 	}
+	
+	// 	body, code, err := utils.Create(url, contentType, newCharacter)
+	// 	if err != nil {
+	// 		c.JSON(code, utils.GenerateError(code))
+	// 		return
+	// 	}
+	
+	// 	if code != http.StatusCreated {
+	// 		c.JSON(500, utils.GenerateError(500))
+	// 		return
+	// 	}
+	
+	// 	c.JSON(http.StatusCreated, body)
+	// }
+	
+	// func getCharacters(c *gin.Context){
+	// 	var characters []models.CharacterSheet
+	// 	url := "https://my-json-server.typicode.com/johnsdjustin/character-sheets-db/characters"
+	
+	// 	body, code, err := utils.Fetch(url)
+	// 	if err != nil || code >= 400 {
+	// 		c.JSON(code, utils.GenerateError(code))
+	// 		return
+	// 	}
+	
+	// 	jErr := json.Unmarshal(body, &characters)
+	// 	if jErr != nil {
+	// 		c.JSON(500, utils.GenerateError(500))
+	// 		return
+	// 	}
+	
+	// 	c.JSON(http.StatusOK, characters)
+	// }
+	
+	// func getCharactersById(c *gin.Context){
+	// 	id := c.Param("id")
+	// 	baseUrl := "https://my-json-server.typicode.com/johnsdjustin/character-sheets-db/characters"
+	// 	resourceUrl := fmt.Sprintf("%s/%s", baseUrl, id)
+	// 	var character models.CharacterSheet
+	
+	// 	body, code, err := utils.Fetch(resourceUrl)
+	// 	if err != nil {
+	// 		c.JSON(code, utils.GenerateError(code))
+	// 		return
+	// 	}
+	
+	// 	jErr := json.Unmarshal(body, &character)
+	// 	if jErr != nil {
+	// 		c.JSON(500, utils.GenerateError(500))
+	// 		return
+	// 	}
+	
+	// 	c.JSON(http.StatusFound, character)
+	// }
+	
