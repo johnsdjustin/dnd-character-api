@@ -32,7 +32,7 @@ POST Body:
 
 **NOTE**: Resources created with POST are not persisted. 
 
-### Project Goals
+### Project Todo
 
 * Update project file structure
 * Return errors from CharacterAPIRepository methods
